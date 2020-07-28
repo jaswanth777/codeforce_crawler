@@ -77,6 +77,8 @@ def submission_stats(request,handle):
                 others += 1
     datemapjson = json.dumps(datemap)
 
+
+
     context = {
         'handle': handle,
         'ok': ok,
