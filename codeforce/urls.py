@@ -18,6 +18,6 @@ from django.urls import path,include
 from crawler import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/',include('crawler.urls')),
+    path('',include('crawler.urls')),
     path('display/<str:handle>',views.display,name='display'),
 ]
