@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submission stats</title>
-</head>
-
-<body>
+{% extends "crawler/index2.html" %}
+{% block content %}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load("current", {
@@ -18,17 +10,17 @@
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Type','number'],
-                ['accepted', {{ ok }} ],
-                ['Compilation error', {{ compilation_error }} ],
-                ['run time error', {{ runtime_error }}],
-                ['Wrong answer', {{ wrong_answer }}],
-                ['time limit exceeded', {{ time_limit_exceed }}],
-                ['hacked', {{ hacked }}],
-                ['others', {{ others }}]
+                ['ACCEPTED', {{ ok }} ],
+                ['COMPILATION ERROR', {{ compilation_error }} ],
+                ['RUN TIME ERROR', {{ runtime_error }}],
+                ['WRONG ANSWER', {{ wrong_answer }}],
+                ['TIME LIMIT EXCEEDED', {{ time_limit_exceed }}],
+                ['HACKED', {{ hacked }}],
+                ['OTHERS', {{ others }}]
             ]);
 
         var options = {
-            title: 'Submissions',
+            title: 'SUBMISSIONS HISTORY',
             is3D: true,
         };
 
@@ -63,7 +55,7 @@
        var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
 
        var options = {
-            title: 'Submission',
+            title: 'DAILY ATTENDANCE STATS',
             height: 350,
             colorAxis:{minValue: 0,  colors: ['#ffffff', '#ff0000']}
 ,
@@ -83,7 +75,4 @@
        chart.draw(dataTable, options);
    }
     </script>
-    <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
-</body>
-
-</html>
+    <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>{% endblock content %}
