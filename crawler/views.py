@@ -20,3 +20,22 @@ def display(request,handle):
         'handle':handle,
     }
     return render(request,'crawler/display.html',context)
+def contest_stats(request,handle):
+    contests=[]
+    ranks=[]
+    rating=[]
+    c_url="https://codeforces.com/api/user.rating?handle="+handle
+    res=requests.get(c_url)
+    data=res.json()
+    for val in data['result']:
+        contests.append(val['contestId'])
+        ranks.append(val['rank'])
+
+        rating.append(val['newRating'])
+    context={
+        'handle':handle,
+        'contests':contests,
+        'ranks':ranks,
+        'rating':rating
+    }
+    return render(request,'crawler/contest_stats.html',context)
