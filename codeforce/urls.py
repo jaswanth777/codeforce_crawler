@@ -20,4 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('crawler.urls')),
     path('display/<str:handle>',views.display,name='display'),
+    path('contest_stats/<str:handle>',views.contest_stats,name='contest-stats'),
+    path('submission_stats/<str:handle>',views.submission_stats,name='submission-stats'),    
 ]
