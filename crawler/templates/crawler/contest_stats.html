@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Contest Stats</title>
-</head>
-<body>
+{% extends "crawler/index2.html" %}
+{% block content %}
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <div class="container" id="chart">
     <script>
@@ -124,5 +119,4 @@
         chart2.render();
 </script>
 </div>
-</body>
-</html>
+{% endblock content %}
