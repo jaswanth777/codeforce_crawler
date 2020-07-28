@@ -63,13 +63,20 @@
        var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
 
        var options = {
-            title: 'Red Sox Attendance',
+            title: 'Submission',
             height: 350,
+            colorAxis:{minValue: 0,  colors: ['#ffffff', '#ff0000']}
+,
             calendar: {
                 cellColor: {
-                    stroke: '#76a7fa',
+                    stroke: '#ff0000',
                     strokeOpacity: 0.5,
                     strokeWidth: 1,
+                },
+                focusedCellColor: {
+                    stroke: '#00ff00',
+                    strokeOpacity: 0.8,
+                    strokeWidth: 3
                 }
             }
         };
