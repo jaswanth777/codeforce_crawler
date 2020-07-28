@@ -39,3 +39,43 @@ def contest_stats(request,handle):
         'rating':rating
     }
     return render(request,'crawler/contest_stats.html',context)
+def submission_stats(request,handle):
+    URL = 'https://codeforces.com/api/user.status?handle='+handle
+    data = requests.get(URL).json()
+    ok = 0
+    compilation_error = 0
+    runtime_error = 0
+    wrong_answer = 0
+    time_limit_exceed = 0
+    hacked = 0
+    others = 0
+    for rows in data['result']:
+        if rows.get('verdict') is not None:
+            verdict = rows['verdict']
+            if verdict == "OK":
+                ok += 1
+            elif verdict == "COMPILATION_ERROR":
+                compilation_error += 1
+            elif verdict == "RUNTIME_ERROR":
+                runtime_error += 1
+            elif verdict == "WRONG_ANSWER":
+                wrong_answer += 1
+            elif verdict == "TIME_LIMIT_EXCEEDED":
+                time_limit_exceed += 1
+            elif verdict == "HACKED":
+                hacked += 1
+            else:
+                others += 1
+            
+
+    context = {
+        'handle': handle,
+        'ok': ok,
+        'compilation_error': compilation_error,
+        'runtime_error': runtime_error,
+        'wrong_answer': wrong_answer,
+        'time_limit_exceed': time_limit_exceed,
+        'hacked' : hacked,
+        'others' : others
+    }
+    return render(request, "crawler/submission_stats.html", context)
