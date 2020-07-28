@@ -6,8 +6,8 @@
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<div class="container" id="chart"></div>
-<script>
+<div class="container" id="chart">
+    <script>
 
     var options = {
           series: [{
@@ -61,8 +61,68 @@
         }
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        let chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
 </script>
+</div>
+<div class="container" id="chart2">
+    <script>
+
+    var options2 = {
+          series: [{
+          name: 'Rank',
+          data: {{ ranks }}
+        }],
+          chart: {
+          height: 350,
+          type: 'line',
+        },
+        stroke: {
+          width: 7,
+          curve: 'smooth'
+        },
+        xaxis: {
+          categories: {{ contests }}
+        },
+        title: {
+          text: 'Rank vs Contest ID',
+          align: 'left',
+          style: {
+            fontSize: "16px",
+            color: '#666'
+          }
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            shade: 'dark',
+            gradientToColors: [ '#FDD835'],
+            shadeIntensity: 1,
+            type: 'horizontal',
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 100, 100, 100]
+          },
+        },
+        markers: {
+          size: 4,
+          colors: ["#FFA41B"],
+          strokeColors: "#fff",
+          strokeWidth: 2,
+          hover: {
+            size: 7,
+          }
+        },
+        yaxis: {
+          title: {
+            text: 'Rank',
+          },
+        }
+        };
+
+        let chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+        chart2.render();
+</script>
+</div>
 </body>
 </html>
