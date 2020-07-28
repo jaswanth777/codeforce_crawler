@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Display Handle Page</title>
-</head>
-<body><h1>Here you can view  details of {{ handle }}</h1>
-<p>For the contest stats : <a href="/contest_stats/{{ handle }}">Click Here</a></p>
- <p>For the submission stats : <a href="/submission_stats/{{ handle }}">Click Here</a></p>
-</body>
-</html>
+{% extends "crawler/index.html" %}
+{% block content %}
+
+    <div class="container">
+      <div class="row">
+          <h1>Explore the data of <em>{{ handle }}</em></h1>
+        <div class="col-lg-6">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+              <a href="/contest_stats/{{ handle }}" target="_blank"><h3>Contest Statistics</h3></a>
+            <p class="lead mb-0">Click above to view stats</p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+              <a href="/submission_stats/{{ handle }}" target="_blank"><h3>Submission Stats</h3></a>
+            <p class="lead mb-0">Click above to view submission stats</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock content %}
