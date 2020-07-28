@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect,HttpResponse
 import bs4
 import requests
 from .forms import HandleForm
+import datetime
+import json
 # Create your views here.
 
 def home(request):
@@ -49,7 +51,14 @@ def submission_stats(request,handle):
     time_limit_exceed = 0
     hacked = 0
     others = 0
+    datemap = {}
     for rows in data['result']:
+        date =  datetime.datetime.fromtimestamp(rows['creationTimeSeconds']).date().strftime('%Y-%m-%d')
+        print(date)
+        if date in datemap.keys():
+            datemap[date] += 1
+        else:
+            datemap[date] = 1
         if rows.get('verdict') is not None:
             verdict = rows['verdict']
             if verdict == "OK":
@@ -66,7 +75,7 @@ def submission_stats(request,handle):
                 hacked += 1
             else:
                 others += 1
-            
+    datemapjson = json.dumps(datemap)
 
     context = {
         'handle': handle,
@@ -76,6 +85,7 @@ def submission_stats(request,handle):
         'wrong_answer': wrong_answer,
         'time_limit_exceed': time_limit_exceed,
         'hacked' : hacked,
-        'others' : others
+        'others' : others,
+        'heatmap' : datemapjson
     }
     return render(request, "crawler/submission_stats.html", context)
