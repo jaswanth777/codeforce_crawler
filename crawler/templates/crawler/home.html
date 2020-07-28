@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>HomePage</title>
-</head>
-<body>
-<h1>CODEFORCES WEB CRAWLER</h1>
-<p>This webpage help you to track your friend progress on CODEFORCES</p>
+{% extends "crawler/index.html" %}
+{% load static %}
+{% block content %}
 
-<form method="POST" target="_blank">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" class="btn btn-success" value="SEARCH"><span class="lnr lnr-arrow-right"></span>
-</form>
-</body>
-</html>
+          <form method="POST">
+            <div class="form-row">
+              <div class="col-12 col-md-9 mb-2 mb-md-0">
+                {% csrf_token %}
+                    {{ form }}
+              </div>
+              <div class="col-12 col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-primary">Explore!</button>
+              </div>
+            </div>
+          </form>
+
+
+{% endblock content %}
