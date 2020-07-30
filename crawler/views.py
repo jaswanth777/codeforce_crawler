@@ -54,7 +54,6 @@ def submission_stats(request,handle):
     datemap = {}
     for rows in data['result']:
         date =  datetime.datetime.fromtimestamp(rows['creationTimeSeconds']).date().strftime('%Y-%m-%d')
-        print(date)
         if date in datemap.keys():
             datemap[date] += 1
         else:
