@@ -1,5 +1,4 @@
 from django.shortcuts import render,redirect,HttpResponse
-import bs4
 import requests
 from .forms import HandleForm
 import datetime
